@@ -1,9 +1,12 @@
 import React from "react";
+import Navbar from "./Component/Navbar";
+import Body from "./Component/Body";
 
 const page = () => {
   return (
     <div>
-      <div>New file</div>
+      <Navbar />
+      <Body />
     </div>
   );
 };

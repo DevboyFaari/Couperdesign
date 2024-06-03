@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    margin: 10px;
+    background-color: #DA70D6;
+}
