@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import axios from "axios";
 import Image from "next/image";
@@ -29,10 +30,11 @@ const Search = () => {
         const ingredientsWithPrices = recipe.recipe.ingredientLines.map(
           (ingredient) => ({
             ingredient,
-            price: (Math.random() * (10 - 1) + 1).toFixed(2), // Generate random price between 1 and 10
+            price: (Math.random() * (10 - 1) + 1).toFixed(2),
           })
         );
-        return { ...recipe, ingredientsWithPrices };
+        const totalCost = ingredientsWithPrices.reduce((acc, item) => acc + parseFloat(item.price), 0);
+        return { ...recipe, ingredientsWithPrices, totalCost };
       });
       setRecipes(recipesWithPrices);
     } catch (error) {
@@ -42,24 +44,29 @@ const Search = () => {
     }
   };
 
+  const handleConvertToNaira = (totalCost) => {
+    const totalInNaira = (totalCost * 1468.90).toFixed(2);
+    alert(`Total Cost in Naira: ₦${totalInNaira}`);
+  };
+
   return (
     <div className="flex flex-col items-center bg-[#800020] p-4 min-h-screen">
-      <form onSubmit={handleSearch} className="mb-4">
+      <form onSubmit={handleSearch} className="mb-4 w-full max-w-lg">
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search for recipes..."
-          className="p-2 rounded-[25px] bg-transparent border-solid border-2 border-black-500 w-[500px]"
+          className="p-2 rounded-[25px] bg-transparent border-solid border-2 border-black-500 w-full"
         />
-        <button type="submit" className="p-2 bg-white rounded-md ml-2">
+        <button type="submit" className="p-2 bg-white rounded-md mt-2 w-full md:w-auto">
           Search
         </button>
       </form>
       {loading && <p>Loading...</p>}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
         {recipes.map((recipe) => (
-          <div key={recipe.recipe.uri} className="text-center text-white">
+          <div key={recipe.recipe.uri} className="text-center text-white p-4 bg-[#6b001a] rounded-lg">
             <Image
               src={recipe.recipe.image}
               alt={recipe.recipe.label}
@@ -77,6 +84,13 @@ const Search = () => {
                 </li>
               ))}
             </ul>
+            <p className="mt-2 font-bold">Total Cost: ${recipe.totalCost.toFixed(2)}</p>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
+              onClick={() => handleConvertToNaira(recipe.totalCost)}
+            >
+              Convert to Naira
+            </button>
           </div>
         ))}
       </div>
