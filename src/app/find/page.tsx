@@ -11,7 +11,7 @@ const RestaurantSearch = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (navigator.geolocation) {
+    if (window && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation({
