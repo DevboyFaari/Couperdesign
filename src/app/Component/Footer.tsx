@@ -10,10 +10,16 @@ const Footer = () => {
             <a href="#help" className="text-gray-500 hover:underline block">
               Help Center
             </a>
-            <a href="#safety-info" className="text-gray-500 hover:underline block">
+            <a
+              href="#safety-info"
+              className="text-gray-500 hover:underline block"
+            >
               Safety Information
             </a>
-            <a href="#cancelation" className="text-gray-500 hover:underline block">
+            <a
+              href="#cancelation"
+              className="text-gray-500 hover:underline block"
+            >
               Cancellation Option
             </a>
             <a href="#report" className="text-gray-500 hover:underline block">
@@ -43,7 +49,10 @@ const Footer = () => {
             <a href="#press" className="text-gray-500 hover:underline block">
               Press
             </a>
-            <a href="#investors" className="text-gray-500 hover:underline block">
+            <a
+              href="#investors"
+              className="text-gray-500 hover:underline block"
+            >
               Investors
             </a>
           </div>
@@ -58,7 +67,10 @@ const Footer = () => {
             <a href="#cookie" className="text-gray-500 hover:underline block">
               Cookie Policy
             </a>
-            <a href="#disclaimer" className="text-gray-500 hover:underline block">
+            <a
+              href="#disclaimer"
+              className="text-gray-500 hover:underline block"
+            >
               Disclaimer
             </a>
           </div>

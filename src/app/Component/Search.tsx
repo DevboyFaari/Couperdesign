@@ -33,7 +33,10 @@ const Search = () => {
             price: (Math.random() * (10 - 1) + 1).toFixed(2),
           })
         );
-        const totalCost = ingredientsWithPrices.reduce((acc, item) => acc + parseFloat(item.price), 0);
+        const totalCost = ingredientsWithPrices.reduce(
+          (acc: number, item: { price: string; }) => acc + parseFloat(item.price),
+          0
+        );
         return { ...recipe, ingredientsWithPrices, totalCost };
       });
       setRecipes(recipesWithPrices);
@@ -44,8 +47,8 @@ const Search = () => {
     }
   };
 
-  const handleConvertToNaira = (totalCost) => {
-    const totalInNaira = (totalCost * 1468.90).toFixed(2);
+  const handleConvertToNaira = (totalCost: number) => {
+    const totalInNaira = (totalCost * 1468.9).toFixed(2);
     alert(`Total Cost in Naira: ₦${totalInNaira}`);
   };
 
@@ -59,14 +62,20 @@ const Search = () => {
           placeholder="Search for recipes..."
           className="p-2 rounded-[25px] bg-transparent border-solid border-2 border-black-500 w-full"
         />
-        <button type="submit" className="p-2 bg-white rounded-md mt-2 w-full md:w-auto">
+        <button
+          type="submit"
+          className="p-2 bg-white rounded-md mt-2 w-full md:w-auto"
+        >
           Search
         </button>
       </form>
       {loading && <p>Loading...</p>}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
         {recipes.map((recipe) => (
-          <div key={recipe.recipe.uri} className="text-center text-white p-4 bg-[#6b001a] rounded-lg">
+          <div
+            key={recipe.recipe.uri}
+            className="text-center text-white p-4 bg-[#6b001a] rounded-lg"
+          >
             <Image
               src={recipe.recipe.image}
               alt={recipe.recipe.label}
@@ -78,13 +87,15 @@ const Search = () => {
             <p>Calories: {Math.round(recipe.recipe.calories)}</p>
             <p>Ingredients:</p>
             <ul className="list-disc list-inside">
-              {recipe.ingredientsWithPrices.map((ingredient, index) => (
+              {recipe.ingredientsWithPrices.map((ingredient: { ingredient: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode>; price: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode>; }, index: React.Key) => (
                 <li key={index}>
                   {ingredient.ingredient} - ${ingredient.price}
                 </li>
               ))}
             </ul>
-            <p className="mt-2 font-bold">Total Cost: ${recipe.totalCost.toFixed(2)}</p>
+            <p className="mt-2 font-bold">
+              Total Cost: ${recipe.totalCost.toFixed(2)}
+            </p>
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2"
               onClick={() => handleConvertToNaira(recipe.totalCost)}
