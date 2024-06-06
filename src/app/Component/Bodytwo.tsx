@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import { relative } from "path";
 import { Roboto, Pacifico } from "next/font/google";
 
 const robo = Roboto({
@@ -31,7 +30,7 @@ const Bodytwo = () => {
             </span>
           </span>
           <span className="block text-[16px] font-normal w-[500px] mt-2">
-            At the heart of Korean cuisine lies the concept of &quot;banchan,&quot; a
+            At the heart of Korean cuisine lies the concept of <q>banchan</q>, a
             collection of small side dishes that accompany the main meal. These
             banchan can range from fermented vegetables like kimchi to savory
             meat dishes and crisp salads. They are often served in a shared
