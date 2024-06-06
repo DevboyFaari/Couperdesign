@@ -12,19 +12,32 @@
 //     },
 //   };
   
-  /** @type {import('next').NextConfig} */
-const nextConfig = {
-    images: {
-      remotePatterns: [
-        {
-          protocol: 'https',
-          hostname: 'edamam-product-images.s3.amazonaws.com',
-          port: '', // Optional
-          pathname: '/path/**', // Optional
-        }
-      ],
-    },
-  };
+//   /** @type {import('next').NextConfig} */
+// const nextConfig = {
+//     images: {
+//       remotePatterns: [
+//         {
+//           protocol: 'https',
+//           hostname: 'edamam-product-images.s3.amazonaws.com',
+//           port: '', // Optional
+//           pathname: '/path/**', // Optional
+//         }
+//       ],
+//     },
+//   };
   
-  export default nextConfig;
+//   export default nextConfig;
+
+// next.config.js
+export const images = {
+    remotePatterns: [
+        {
+            protocol: 'https',
+            hostname: 'edamam-product-images.s3.amazonaws.com',
+            port: '',
+            pathname: '/**',
+        },
+    ],
+};
+  
   

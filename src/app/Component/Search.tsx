@@ -34,7 +34,7 @@ const Search = () => {
           })
         );
         const totalCost = ingredientsWithPrices.reduce(
-          (acc: number, item: { price: string; }) => acc + parseFloat(item.price),
+          (acc, item) => acc + parseFloat(item.price),
           0
         );
         return { ...recipe, ingredientsWithPrices, totalCost };
@@ -47,13 +47,13 @@ const Search = () => {
     }
   };
 
-  const handleConvertToNaira = (totalCost: number) => {
+  const handleConvertToNaira = (totalCost) => {
     const totalInNaira = (totalCost * 1468.9).toFixed(2);
     alert(`Total Cost in Naira: ₦${totalInNaira}`);
   };
 
   return (
-    <div className="flex flex-col items-center bg-[#800020] p-4 min-h-screen">
+    <div className="flex flex-col items-center bg-[#800020] p-4 min-h-screen w-full overflow-x-hidden">
       <form onSubmit={handleSearch} className="mb-4 w-full max-w-lg">
         <input
           type="text"
@@ -105,6 +105,11 @@ const Search = () => {
           </div>
         ))}
       </div>
+      <style jsx global>{`
+        body {
+          overflow-x: hidden;
+        }
+      `}</style>
     </div>
   );
 };
