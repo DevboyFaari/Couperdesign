@@ -11,7 +11,7 @@ const RestaurantSearch = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (window && navigator.geolocation) {
+    if (typeof window !== "undefined" && navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           setLocation({
@@ -49,7 +49,8 @@ const RestaurantSearch = () => {
     }
   };
 
-  return (
+  
+  if (typeof window !== "undefined") return (
     <div className="container bg-[#871F78] mx-auto p-4">
       <h1 className="text-white mb-4">Restaurants Near You</h1>
       {error && <p className="text-red-500">{error}</p>}
